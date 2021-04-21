@@ -26,7 +26,7 @@ class AdvancedBot(BaseBot):
             else:
                 dict_answers[bulls_and_cows] = [answer]
                 
-        selected = max(d.items(), key=lambda x: len(x[1]) if x[0][0] != num_symbols else 0)
+        selected = max(dict_answers.items(), key=lambda x: len(x[1]) if x[0][0] != num_symbols else 0)
         self.answers = selected[1]
         return selected[0]
                 
