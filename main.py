@@ -88,7 +88,7 @@ def main():
     updater.start_webhook(listen="0.0.0.0",
                           port=PORT,
                           url_path=TOKEN,
-                          webhook_url="https://mastermindbotyl.herokuapp.com/" + TOKEN)
+                          webhook_url="https://mastermind-tg-py.herokuapp.com/" + TOKEN)
     updater.idle()
 
 
