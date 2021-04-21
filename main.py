@@ -1,5 +1,5 @@
 from telegram.ext import Updater, MessageHandler, Filters, CommandHandler, CallbackContext
-from telegram import ReplyKeyboardMarkup
+from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from simple_bot import SimpleBot
 from utils import to_byte_array
 from advanced_bot import AdvancedBot
@@ -8,7 +8,7 @@ import pymorphy2
 import os
 
 PORT = int(os.environ.get('PORT', '8443'))
-TOKEN = os.environ.get('TOKEN', '')
+TOKEN = os.environ.get('TOKEN')
 max_num_moves = 10
 levels_keyboard = [['Классический', 'Обычный', 'Продвинутый'],
                    ['Правила']]
@@ -42,7 +42,7 @@ def reply(update, context):
     context.user_data['bot'] = bot
     context.user_data['moves'] = []
 
-    update.message.reply_text(bot.get_greeting())
+    update.message.reply_text(bot.get_greeting(), reply_markup=ReplyKeyboardRemove())
 
 
 def reply_image(update, context):
