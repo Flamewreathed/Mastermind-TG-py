@@ -3,11 +3,11 @@ import itertools
 from base_bot import BaseBot
 
 
-def penalty(bulls_cows):
-    best_bulls = 0
-    best_cows = 1.5
-    return (bulls_cows[0] - best_bulls) * (bulls_cows[0] - best_bulls) + (
-            bulls_cows[1] - best_cows) * (bulls_cows[1] - best_cows)
+# def penalty(bulls_cows):
+#     best_bulls = 0
+#     best_cows = 1.5
+#     return (bulls_cows[0] - best_bulls) * (bulls_cows[0] - best_bulls) + (
+#             bulls_cows[1] - best_cows) * (bulls_cows[1] - best_cows)
 
 
 class AdvancedBot(BaseBot):
@@ -25,7 +25,12 @@ class AdvancedBot(BaseBot):
                 dict_answers[bulls_and_cows].append(answer)
             else:
                 dict_answers[bulls_and_cows] = [answer]
-        answers = dict_answers.keys()
-        n = min(answers, key=penalty)
-        self.answers = dict_answers[n]
-        return n
+                
+        selected = max(d.items(), key=lambda x: len(x[1]) if x[0][0] != num_symbols else 0)
+        self.answers = selected[1]
+        return selected[0]
+                
+        # answers = dict_answers.keys()
+        # n = min(answers, key=penalty)
+        # self.answers = dict_answers[n]
+        # return n
